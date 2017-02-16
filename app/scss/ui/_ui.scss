@@ -9,48 +9,6 @@
    box-sizing: border-box;
  }
 
- body {
-   font-family: 'Helvetica Neue', helvetica, sans-serif;
- }
-
- h1, h2, h3, h4, p {
-   color: $black;
- }
-
-
-.main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  // TODO: $main-header-height
-  height: 80px;
-  border-bottom: 1px solid #e8e8e8;
-  background-color: $white;
-  z-index: 99999;
-
-  .main-nav {
-    display: inline-block;
-    float: right;
-    margin-top: 20px;
-    margin-right: 20px;
-
-    ul li {
-      display: inline-block;
-      margin: 10px;
-    }
-  }
-}
-
-.container-full {
-  background-color: $white;
-}
-.section {
-  // TODO: $main-header-height
-  margin-top: 80px;
-  padding: 40px 30px;
-}
-
 
 
  // THE END OF THIS CHAPTER..

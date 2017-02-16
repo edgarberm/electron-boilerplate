@@ -11,9 +11,15 @@
 @import "components/components";
 @import "ux/ux";
 
+
+// NOTE: for testing only
 body {
   font-family: 'Helvetica Neue';
   color: #253137;
+}
+
+a.active {
+  color: red;
 }
 
 // The end of this chapter..

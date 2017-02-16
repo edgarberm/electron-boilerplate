@@ -82,6 +82,7 @@ class AsyncRouteManager extends Component {
 
 
   componentWillMount () {
+    console.log(this.props);
     this.nextChildren = this.props.children
     // Precargador custom para cada ruta, se especifica como propiedad en el componente
     // Route preloader={ Component }
@@ -96,7 +97,7 @@ class AsyncRouteManager extends Component {
 
   componentWillReceiveProps (nextProps) {
     // Si la nueva vista es la misma que la actual no renderizamos
-    if (this.props.children.type.name === nextProps.children.type.name)
+    if (this.props.children.props.location.pathname === nextProps.children.props.location.pathname)
       return false
 
     this.prevChildren = this.nextChildren

@@ -15858,13 +15858,7 @@ var _App = __webpack_require__(238);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Launch = __webpack_require__(251);
-
-var _Launch2 = _interopRequireDefault(_Launch);
-
-var _Section = __webpack_require__(252);
-
-var _Section2 = _interopRequireDefault(_Section);
+var _views = __webpack_require__(588);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15874,8 +15868,21 @@ var routes = _react2.default.createElement(
   _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: _App2.default },
-    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Launch2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: 'section', component: _Section2.default })
+    _react2.default.createElement(_reactRouter.IndexRoute, { component: _views.Launch }),
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { path: 'view-one', component: _views.ViewOne },
+      _react2.default.createElement(_reactRouter.IndexRoute, { component: _views.Launch }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'tasks/one', component: _views.SubviewOne }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'tasks/two', component: _views.SubviewTwo })
+    ),
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { path: 'view-two', component: _views.ViewTwo },
+      _react2.default.createElement(_reactRouter.IndexRoute, { component: _views.Launch }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'users/one', component: _views.SubviewOne }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'users/two', component: _views.SubviewTwo })
+    )
   )
 );
 
@@ -16000,53 +16007,48 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
-      var children = this.props.children;
-
-
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
-          'nav',
+          'ul',
           null,
           _react2.default.createElement(
-            'ul',
+            'li',
             null,
             _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                _reactRouter.Link,
-                { to: '/' },
-                'Main'
-              )
-            ),
+              _reactRouter.Link,
+              { to: '/' },
+              'Home'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
             _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                _reactRouter.Link,
-                { to: 'section' },
-                'Section'
-              )
+              _reactRouter.Link,
+              { to: 'view-one', activeClassName: 'active' },
+              'One'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: 'view-two', activeClassName: 'active' },
+              'Two'
             )
           )
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Electron\xAE app'
         ),
         _react2.default.createElement(
           _components.AsyncRouteManager,
           { componentDataHandlerMethod: _stores.AppStore.componentDataHandler,
             initialPreloader: _components.InitialPreloader,
             transitionPreloader: _components.GenericPreloader,
-            transition: true,
+            transition: false,
             transitionTimeOut: 200 },
-          children
+          this.props.children
         )
       );
     }
@@ -16156,6 +16158,7 @@ var AsyncRouteManager = (_temp = _class = function (_Component) {
   _createClass(AsyncRouteManager, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
+      console.log(this.props);
       this.nextChildren = this.props.children;
       // Precargador custom para cada ruta, se especifica como propiedad en el componente
       // Route preloader={ Component }
@@ -16168,7 +16171,7 @@ var AsyncRouteManager = (_temp = _class = function (_Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       // Si la nueva vista es la misma que la actual no renderizamos
-      if (this.props.children.type.name === nextProps.children.type.name) return false;
+      if (this.props.children.props.location.pathname === nextProps.children.props.location.pathname) return false;
 
       this.prevChildren = this.nextChildren;
       this.nextChildren = nextProps.children;
@@ -16384,35 +16387,10 @@ var InitialPreloader = function InitialPreloader() {
 
 /***/ }),
 /* 242 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(8);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ShopPreloader = function ShopPreloader() {
-  return _react2.default.createElement(
-    "div",
-    { className: "shop-loader" },
-    _react2.default.createElement(
-      "h1",
-      null,
-      "Custom Shop preloader..."
-    )
-  );
-}; /**
-    * Stateless component
-    */
-exports.default = ShopPreloader;
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/usuario/Documents/ed/electron-boilerplate/app/js/components/Preloaders/ShopPreloader.js'");
 
 /***/ }),
 /* 243 */
@@ -16565,7 +16543,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
+var _desc, _value, _class, _descriptor;
 /*****************************************************************************
  * @class: AppStore
  *
@@ -16639,31 +16617,7 @@ function AppStore() {
 
   _classCallCheck(this, AppStore);
 
-  _initDefineProp(this, 'countryname', _descriptor, this);
-
-  _initDefineProp(this, 'postalcode', _descriptor2, this);
-
-  _initDefineProp(this, 'providername', _descriptor3, this);
-
-  _initDefineProp(this, 'countries', _descriptor4, this);
-
-  _initDefineProp(this, 'providers', _descriptor5, this);
-
-  _initDefineProp(this, 'provider', _descriptor6, this);
-
-  _initDefineProp(this, 'categories', _descriptor7, this);
-
-  _initDefineProp(this, 'layouts', _descriptor8, this);
-
-  _initDefineProp(this, 'id_layouts', _descriptor9, this);
-
-  _initDefineProp(this, 'allergens', _descriptor10, this);
-
-  _initDefineProp(this, 'welfares', _descriptor11, this);
-
-  _initDefineProp(this, 'icons', _descriptor12, this);
-
-  _initDefineProp(this, 'catalog', _descriptor13, this);
+  _initDefineProp(this, 'varname', _descriptor, this);
 
   this.componentDataHandler = function (request, callback) {
     return (0, _utils.asyncLoop)(request.length, function (loop) {
@@ -16696,35 +16650,6 @@ function AppStore() {
     });
   };
 }
-// Código postal seleccionado
-
-// Nombre del proveedor seleccionado
-
-// Paises disponibles
-
-// Proveedores disponibles para un CP
-
-// Proveedor seleccionado
-
-// Categorias disponibles para el proveedor seleccionado
-
-// Layouts disponibles para el proveedor seleccionado
-
-// IDs de los layouts disponibles para el proveedor seleccionado
-
-// Alergenos disponibles
-
-// Cuidate disponibles
-
-// Iconos para los filtros nutricionales
-
-// Catálogo de productos para proveedor seleccionado
-
-// @deprecated: no es necesario === provider.provider_integration_type
-// @observable provider_integration_type
-// @deprecated: no es necesario === provider.id_provider
-// @observable id_provider
-
 
 /**
  * @func: componentDataHandler
@@ -16737,43 +16662,7 @@ function AppStore() {
  *
  * TODO: comprobar si los datos están disponibles antes de pedirlos.
  */
-, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'countryname', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'postalcode', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'providername', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'countries', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'providers', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'provider', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'categories', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'layouts', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'id_layouts', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'allergens', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'welfares', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'icons', [_mobx.observable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'catalog', [_mobx.observable], {
+, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'varname', [_mobx.observable], {
   enumerable: true,
   initializer: null
 })), _class);
@@ -16941,6 +16830,8 @@ var _react = __webpack_require__(8);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = __webpack_require__(229);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16963,11 +16854,11 @@ var Launch = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'Launch' },
         _react2.default.createElement(
-          'h3',
+          'h1',
           null,
-          'I\'m a Launch view'
+          'Launch screen'
         )
       );
     }
@@ -16979,65 +16870,7 @@ var Launch = function (_Component) {
 exports.default = Launch;
 
 /***/ }),
-/* 252 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(8);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Section = function (_Component) {
-  _inherits(Section, _Component);
-
-  function Section() {
-    _classCallCheck(this, Section);
-
-    return _possibleConstructorReturn(this, (Section.__proto__ || Object.getPrototypeOf(Section)).apply(this, arguments));
-  }
-
-  _createClass(Section, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h3',
-          null,
-          'I\'m a Section view'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'Some text comes here..'
-        )
-      );
-    }
-  }]);
-
-  return Section;
-}(_react.Component);
-
-exports.default = Section;
-
-/***/ }),
+/* 252 */,
 /* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42032,6 +41865,344 @@ document.addEventListener('DOMContentLoaded', function () {
   ), document.querySelector('.application'));
   console.info('🎉 App initialized!');
 });
+
+/***/ }),
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(229);
+
+var _components = __webpack_require__(244);
+
+var _stores = __webpack_require__(248);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ViewOne = function (_Component) {
+  _inherits(ViewOne, _Component);
+
+  function ViewOne() {
+    _classCallCheck(this, ViewOne);
+
+    return _possibleConstructorReturn(this, (ViewOne.__proto__ || Object.getPrototypeOf(ViewOne)).apply(this, arguments));
+  }
+
+  _createClass(ViewOne, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'ViewOne' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'ViewOne screen'
+        ),
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: 'view-one/tasks/one', activeClassName: 'active' },
+              'Subview one'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: 'view-one/tasks/two', activeClassName: 'active' },
+              'Subview two'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _components.AsyncRouteManager,
+          { componentDataHandlerMethod: _stores.AppStore.componentDataHandler,
+            initialPreloader: _components.InitialPreloader,
+            transitionPreloader: _components.GenericPreloader,
+            transition: false,
+            transitionTimeOut: 200 },
+          this.props.children
+        )
+      );
+    }
+  }]);
+
+  return ViewOne;
+}(_react.Component);
+
+exports.default = ViewOne;
+
+/***/ }),
+/* 587 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(229);
+
+var _components = __webpack_require__(244);
+
+var _stores = __webpack_require__(248);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ViewTwo = function (_Component) {
+  _inherits(ViewTwo, _Component);
+
+  function ViewTwo() {
+    _classCallCheck(this, ViewTwo);
+
+    return _possibleConstructorReturn(this, (ViewTwo.__proto__ || Object.getPrototypeOf(ViewTwo)).apply(this, arguments));
+  }
+
+  _createClass(ViewTwo, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'ViewTwo' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'ViewTwo screen'
+        ),
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: 'view-two/users/one', activeClassName: 'active' },
+              'Subview one'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouter.Link,
+              { to: 'view-two/users/two', activeClassName: 'active' },
+              'Subview two'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _components.AsyncRouteManager,
+          { componentDataHandlerMethod: _stores.AppStore.componentDataHandler,
+            initialPreloader: _components.InitialPreloader,
+            transitionPreloader: _components.GenericPreloader,
+            transition: false,
+            transitionTimeOut: 200 },
+          this.props.children
+        )
+      );
+    }
+  }]);
+
+  return ViewTwo;
+}(_react.Component);
+
+exports.default = ViewTwo;
+
+/***/ }),
+/* 588 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Launch = exports.SubviewTwo = exports.SubviewOne = exports.ViewTwo = exports.ViewOne = undefined;
+
+var _ViewOne = __webpack_require__(586);
+
+var _ViewOne2 = _interopRequireDefault(_ViewOne);
+
+var _ViewTwo = __webpack_require__(587);
+
+var _ViewTwo2 = _interopRequireDefault(_ViewTwo);
+
+var _SubviewOne = __webpack_require__(589);
+
+var _SubviewOne2 = _interopRequireDefault(_SubviewOne);
+
+var _SubviewTwo = __webpack_require__(590);
+
+var _SubviewTwo2 = _interopRequireDefault(_SubviewTwo);
+
+var _Launch = __webpack_require__(251);
+
+var _Launch2 = _interopRequireDefault(_Launch);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.ViewOne = _ViewOne2.default;
+exports.ViewTwo = _ViewTwo2.default;
+exports.SubviewOne = _SubviewOne2.default;
+exports.SubviewTwo = _SubviewTwo2.default;
+exports.Launch = _Launch2.default;
+
+/***/ }),
+/* 589 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(229);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubviewOne = function (_Component) {
+  _inherits(SubviewOne, _Component);
+
+  function SubviewOne() {
+    _classCallCheck(this, SubviewOne);
+
+    return _possibleConstructorReturn(this, (SubviewOne.__proto__ || Object.getPrototypeOf(SubviewOne)).apply(this, arguments));
+  }
+
+  _createClass(SubviewOne, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'SubviewOne' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'SubviewOne screen'
+        )
+      );
+    }
+  }]);
+
+  return SubviewOne;
+}(_react.Component);
+
+exports.default = SubviewOne;
+
+/***/ }),
+/* 590 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(229);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubviewTwo = function (_Component) {
+  _inherits(SubviewTwo, _Component);
+
+  function SubviewTwo() {
+    _classCallCheck(this, SubviewTwo);
+
+    return _possibleConstructorReturn(this, (SubviewTwo.__proto__ || Object.getPrototypeOf(SubviewTwo)).apply(this, arguments));
+  }
+
+  _createClass(SubviewTwo, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'SubviewTwo' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'SubviewTwo screen'
+        )
+      );
+    }
+  }]);
+
+  return SubviewTwo;
+}(_react.Component);
+
+exports.default = SubviewTwo;
 
 /***/ })
 /******/ ]);

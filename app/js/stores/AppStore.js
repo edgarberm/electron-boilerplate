@@ -14,37 +14,7 @@ import { asyncLoop, getDataAsync } from '../utils'
 
 class AppStore {
 
-  // Nombre del pais seleccionado
-  @observable countryname
-  // Código postal seleccionado
-  @observable postalcode
-  // Nombre del proveedor seleccionado
-  @observable providername
-  // Paises disponibles
-  @observable countries
-  // Proveedores disponibles para un CP
-  @observable providers
-  // Proveedor seleccionado
-  @observable provider
-  // Categorias disponibles para el proveedor seleccionado
-  @observable categories
-  // Layouts disponibles para el proveedor seleccionado
-  @observable layouts
-  // IDs de los layouts disponibles para el proveedor seleccionado
-  @observable id_layouts
-  // Alergenos disponibles
-  @observable allergens
-  // Cuidate disponibles
-  @observable welfares
-  // Iconos para los filtros nutricionales
-  @observable icons
-  // Catálogo de productos para proveedor seleccionado
-  @observable catalog
-  s3_catalogues
-  // @deprecated: no es necesario === provider.provider_integration_type
-  // @observable provider_integration_type
-  // @deprecated: no es necesario === provider.id_provider
-  // @observable id_provider
+  @observable varname
 
 
 

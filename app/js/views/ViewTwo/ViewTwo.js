@@ -1,23 +1,18 @@
 
-
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { AsyncRouteManager, InitialPreloader, GenericPreloader } from './components'
-import { AppStore } from './stores'
+import { AsyncRouteManager, InitialPreloader, GenericPreloader } from '../../components'
+import { AppStore } from '../../stores'
 
-class App extends Component {
-
-  constructor (...args) {
-    super(...args)
-  }
+class ViewTwo extends Component {
 
   render () {
-    return (
-      <div>
+    return(
+      <div className="ViewTwo">
+        <h1>ViewTwo screen</h1>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="view-one" activeClassName="active">One</Link></li>
-          <li><Link to="view-two" activeClassName="active">Two</Link></li>
+          <li><Link to="view-two/users/one" activeClassName="active">Subview one</Link></li>
+          <li><Link to="view-two/users/two" activeClassName="active">Subview two</Link></li>
         </ul>
         <AsyncRouteManager componentDataHandlerMethod={ AppStore.componentDataHandler }
                            initialPreloader={ InitialPreloader }
@@ -32,4 +27,4 @@ class App extends Component {
 }
 
 
-export default App
+export default ViewTwo
