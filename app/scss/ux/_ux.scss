@@ -1,0 +1,203 @@
+
+/* ==========================================================================
+UX
+========================================================================== */
+
+
+.initial-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: lightblue;
+  z-index: 999999;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+
+.generic-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 6px;
+  z-index: 999999;
+
+  .transition-loader__line {
+    position:relative;
+    width: 100vw;
+    height: 6px;
+    background: deepskyblue;
+    animation: roll 1s linear infinite;
+  }
+}
+
+
+.shop-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: deepskyblue;
+  z-index: 999999;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+
+
+@-moz-keyframes roll {
+  0% { width: 0; }
+  100% { width: 100vw; }
+}
+
+@-webkit-keyframes roll {
+  0% { width: 0; }
+  100% { width: 100vw; }
+}
+
+
+// PAGES
+
+.transition-enter {
+  opacity: 0.01;
+  @include transition(opacity 0.6s ease);
+}
+
+.transition-enter.transition-enter-active {
+  opacity: 1;
+}
+
+
+.transition-out {
+  opacity: 1;
+  @include transition(opacity 0.6s ease);
+}
+
+.transition-out.transition-out-active {
+  opacity: 0.01;
+}
+
+
+
+// BACKGROUNDS
+
+.background-enter {
+  opacity: 0.01;
+  @include transition(opacity 0.6s ease);
+}
+.background-enter.background-enter-active {
+  opacity: 1;
+}
+.background-leave {
+  opacity: 1;
+  @include transition(opacity 0.6s ease);
+}
+.background-leave.background-leave-active {
+  opacity: 0.01
+}
+
+
+
+// MODALS
+
+.modal-anim-enter {
+  opacity: 0.00;
+  @include transition(all 0.3s);
+
+  .modal-content {
+    @include transform(translate3d(-50%, -50%, 0) scale(0.7));
+    @include transition(all 0.3s);
+  }
+}
+
+.modal-anim-enter.modal-anim-enter-active {
+  opacity: 1;
+
+  .modal-content {
+    @include transform(translate3d(-50%, -50%, 0) scale(1));
+  }
+}
+
+.modal-anim-leave {
+  opacity: 1;
+  @include transition(all 0.3s);
+}
+
+.modal-anim-leave.modal-anim-leave-active {
+  opacity: 0.00;
+}
+
+
+// NOTIFICATION
+
+.notification-anim-enter {
+  @include transition(all 0.3s);
+
+  .notification-content {
+    top: -80px;
+    @include transition(all 0.3s);
+  }
+}
+
+.notification-anim-enter.notification-anim-enter-active {
+  .notification-content {
+    top: 0px;
+  }
+}
+
+.notification-anim-leave {
+  opacity: 1;
+  @include transition(all 0.3s);
+}
+
+.notification-anim-leave.notification-anim-leave-active {
+  opacity: 0.00;
+}
+
+
+// ALERT
+
+.alert-anim-enter {
+  @include transition(all 0.3s);
+
+  .alert-content {
+    top: -80px;
+    @include transition(all 0.3s);
+  }
+}
+
+.alert-anim-enter.alert-anim-enter-active {
+  .alert-content {
+    top: 0px;
+  }
+}
+
+.alert-anim-leave {
+  opacity: 1;
+  @include transition(all 0.3s);
+}
+
+.alert-anim-leave.alert-anim-leave-active {
+  opacity: 0.00;
+}
+
+
+// THE END OF THIS CHAPTER..

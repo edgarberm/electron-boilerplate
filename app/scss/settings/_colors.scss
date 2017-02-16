@@ -1,0 +1,38 @@
+
+ /* ==========================================================================
+   Colors
+ ========================================================================== */
+
+
+ $white: white;
+ $black: black;
+ $red: #FF2640;
+ $green: #5CB030;
+ $blue: #00BFDF;
+ $yellow: yellow;
+ $grey: grey;
+ $transparent-grey: rgba(37, 49, 55, 0.3);
+
+
+ $colors: (
+   'white': $white,
+   'black': $black,
+   'red': $red,
+   'green': $green,
+   'blue': $blue,
+   'yellow': $yellow,
+   'grey': $grey,
+   'transparent-grey': $transparent-grey
+ );
+
+
+ // Status color scheme
+ $default: #777;
+ $primary: #337ab7;
+ $success: #5cb85c;
+ $info: #5bc0de;
+ $warning: #f0ad4e;
+ $danger: #d9534f;
+
+
+ // THE END OF THIS CHAPTER..

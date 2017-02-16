@@ -1,0 +1,46 @@
+
+/**
+ * Dropdown de tipo Listado
+ */
+.dropdown-list {
+  position: absolute;
+  top: $list-top;
+  width: $width;
+  height: auto;
+  background-color: $white;
+  border: $border-width solid $transparent-grey;
+  border-radius: 14px;
+  z-index: 999;
+  @include box-shadow(0, 5px, 12px, $transparent-grey);
+
+  &.left { left: 0; }
+  &.right { right: 0; }
+  &.center {
+    left: 50%;
+    @include transform(translate3d(-50%, 0, 0));
+  }
+
+
+  /**
+   * Items del listado
+   */
+  .dropdown-list_item {
+    height: $list-item_height;
+  }
+
+  // NOTE: el borde inferior se lo ponemos a todos menos al ultimo.
+  .dropdown-list_item:not(:last-child) {
+    border-bottom: $border-width solid $transparent-grey;
+  }
+
+  .dropdown-list_item-button {
+    width: 100%;
+    height: 100%;
+    line-height: $list-item_height;
+    text-align: center;
+  }
+
+  .dropdown-list_item-button.active {
+    color: $blue;
+  }
+}

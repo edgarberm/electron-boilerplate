@@ -1,0 +1,52 @@
+
+/* ==========================================================================
+  Font
+========================================================================== */
+
+
+/**
+ * Se utiliza para importar fuentes
+ * @param  {String} $name - Nombre que se utilizará al usar la fuente
+ * @param  {String} $src  - Ruta al archivo
+ * @param  {[type]} $hash - Hash para el formato SVG
+ *
+ * Uso:
+ * h1 {
+ *   @include font(nombreDeLaFuente, rutaALosArchivos, hash)
+ * }
+ */
+@mixin font( $name, $src, $hash ) {
+  @font-face {
+    font-family: $name;
+    src: url('fonts/' + $src + '.eot');
+    src: url('fonts/' + $src + '.eot?#iefix') format('embedded-opentype'),
+         url('fonts/' + $src + '.woff') format('woff'),
+         url('fonts/' + $src + '.ttf') format('truetype'),
+         url('fonts/' + $src + '.svg#' + $hash ) format('svg');
+    font-weight:normal;
+    font-style:normal;
+  }
+}
+
+
+/**
+ * Setea el tamaño de la fuente en unidades 'rem' con fallback a 'px'
+ * Utiliza la función auxiliar 'calculateRem'.
+ *
+ * @param  {Number + String} $size - tamaño en px
+ *
+ * Uso:
+ * p {
+ *   @include font-size(14px)
+ * }
+ */
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}

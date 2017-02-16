@@ -1,0 +1,20 @@
+
+ /* ==========================================================================
+   Icons
+ ========================================================================== */
+
+svg.icon {
+  overflow: hidden;
+}
+
+// Colores para los iconos
+@each $name, $value in $colors {
+  svg.icon.#{$name} {
+    fill: $value;
+  }
+}
+
+
+
+
+// The end of this chapter..

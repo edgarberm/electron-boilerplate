@@ -1,0 +1,49 @@
+
+/* ==========================================================================
+  Transforms
+
+  Mixins para transformaciones css
+========================================================================== */
+
+@mixin rotate( $val: -2deg ) {
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}
+
+@mixin transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  transform: $val;
+}
+
+@mixin transform-origin($val) {
+  -webkit-transform-origin: $val;
+  -moz-transform-origin: $val;
+  -ms-transform-origin: $val;
+  transform-origin: $val;
+}
+
+@mixin transform-style($val) {
+  -webkit-transform-style: $val;
+  -moz-transform-style: $val;
+  -ms-transform-style: $val;
+  transform-style: $val;
+}
+
+@mixin perspective($val) {
+  -webkit-perspective: $val;
+  -moz-perspective: $val;
+  -ms-perspective: $val;
+  perspective: $val;
+}
+
+@mixin perspective-origin($val){
+  -webkit-perspective-origin: $val;
+  -moz-perspective-origin: $val;
+  -ms-perspective-origin: $val;
+  perspective-origin: $val;
+}

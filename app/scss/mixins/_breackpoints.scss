@@ -1,0 +1,64 @@
+
+ /* ==========================================================================
+   Mixins - Media Queries
+
+
+   Usage:
+
+   div {
+     width: 100%;
+
+     @include bp-sm { ... }
+     @include bp-md { ... }
+     @include bp-lg { ... }
+     @include bp-hd { ... }
+   }
+ ========================================================================== */
+
+// Small device
+@mixin bp-sm {
+ @media (min-width: 1px) and (max-width: #{$screen-md - 1px}) {
+   @content;
+ }
+}
+
+// Medium device
+@mixin bp-md {
+ @media (min-width: #{$screen-md}) and (max-width: #{$screen-lg - 1px}) {
+   @content;
+ }
+}
+
+// Large device
+@mixin bp-lg {
+ @media (min-width: #{$screen-lg}) and (max-width: #{$screen-hd - 1px}) {
+   @content;
+ }
+}
+
+// High definition
+@mixin bp-hd {
+ @media (min-width: #{$screen-hd}) {
+   @content;
+ }
+}
+
+// Retina displays
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+// Print
+@mixin print {
+  @media print {
+    @content;
+  }
+}

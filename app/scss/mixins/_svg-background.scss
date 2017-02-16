@@ -1,0 +1,34 @@
+
+/* ==========================================================================
+  SVG Background
+
+  SVG para imagenes de fondo con fallback a '.png' y retina.
+
+  Uso:
+
+  image.svg
+  image.png
+  image@2x.png
+
+  body {
+    @include background-image('image');
+  }
+========================================================================== */
+
+$image-path: '../img' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+
+@mixin background-image($name, $size:false) {
+    background-image: url(#{$image-path}/#{$name}.svg);
+    @if($size) {
+        background-size: $size;
+    }
+    .no-svg & {
+        background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+          background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+        }
+    }
+}
