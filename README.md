@@ -1,17 +1,24 @@
 # Electron® Boilerplate
 
-## Development :computer:
+The objective of this is to make a very simple skeleton project.
+
+This Electron boilerplate uses __Babel__ to uses all ES6/ES7 features, __Webpack__ to 
+automatically reload changes while developing an electron app adn __React__+__Mobx__ to
+build the application interface.
+
+
+## Download and install
 
 ```
-npm start  // Start Electron app
-// or
-npm run start-dev  // Start Webpack on watch mode
+npm install
+# Runs webpack on watch mode
+npm run start-dev
+# Starts the Electron app
+npm run start
 ```
 
 
 ## Folder structure :file_folder:
-
-El siguiente gráfico muestra la estructura de ficheros para el proyecto.
 
 ```
 ├── electron-boilerplate/
