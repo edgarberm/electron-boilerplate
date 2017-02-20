@@ -1,7 +1,5 @@
 # Electron® Boilerplate
 
-The objective of this is to make a very simple skeleton project.
-
 This Electron boilerplate uses __Babel__ to uses all ES6/ES7 features, __Webpack__ to 
 automatically reload changes while developing an electron app adn __React__+__Mobx__ to
 build the application interface.
